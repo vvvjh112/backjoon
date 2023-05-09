@@ -74,5 +74,40 @@ def b1018():
 
     print(min(count))
 
+def b1436():
+    a = int(input())
+    result = []
+    cnt = 0
+    while (len(result)<a):
+        cnt+=1
+        if (str(cnt).count("6")>0):
+            temp=list(str(cnt))
+            for i in range(0, len(temp)-2):
+                check = 0
+                if (temp[i] == "6" and temp[i+1] == "6" and temp[i+2] == "6"):
+                    if (result.count(cnt)==0):
+                        result.append(cnt)
 
-b1018()
+    print(result[len(result)-1])
+
+def b2839():
+    a = int(input())
+    result = []
+    for i in range(1, a//8+1):
+        na = a-8*i
+        if (na == 0):
+            result.append(i*2)
+        if (na % 3 == 0):
+            result.append((i*2)+na // 3)
+        if (na % 5 == 0):
+            result.append((i*2)+na // 5)
+    if (a % 3 == 0):
+        result.append(a // 3)
+    if (a % 5 == 0):
+        result.append(a // 5)
+    if (len(result)==0):
+        result.append(-1)
+    print(min(result))
+
+
+b2839()
