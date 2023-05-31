@@ -56,4 +56,53 @@ def b11650():
     for i in range(n):
        print(ary[i][0],ary[i][1])
 
-b11650()
+def b11651():
+    n = int(input())
+    ary = []
+    for i in range(n):
+        ary.append(list(map(int, input().split())))
+    ary.sort(key=lambda x: (x[1], x[0]))
+
+    for i in range(n):
+        print(ary[i][0], ary[i][1])
+
+def b1181():
+    n = int(input())
+    ary = []
+    for i in range(n):
+        temp = list(map(str, input()))
+        if (temp not in ary):
+            ary.append(temp)
+    ary.sort(key=lambda x: (len(x), x))
+
+    for i in range(len(ary)):
+        print(''.join(ary[i]))
+
+def b10814():
+    n = int(input())
+    ary = []
+    for i in range(n):
+        temp = list(map(str, input().split()))
+        ary.append([int(temp[0]),temp[1]])
+    ary.sort(key=lambda x: (x[0]))
+
+    for i in range(n):
+        print(ary[i][0], ary[i][1])
+
+def b18870():
+    n = int(input())
+
+    ary=list(map(int, input().split()))
+
+    sset = set(ary)
+    lst = list(sset)
+    lst.sort()
+
+    dict1={}
+    for i in range(len(lst)):
+        dict1[lst[i]]=i
+
+    for i in ary:
+        print(dict1[i],end=" ")
+
+b18870()
