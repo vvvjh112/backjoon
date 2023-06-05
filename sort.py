@@ -105,4 +105,6 @@ def b18870():
     for i in ary:
         print(dict1[i],end=" ")
 
+# import sys
+# sys.stdin.readline()
 b18870()
