@@ -68,4 +68,38 @@ def b11866():
             print(i, end=", ")
 
 
-b11866()
+def b1966():
+    a = int(sys.stdin.readline())
+
+    result = []
+    for i in range(a):
+        queue = deque([])
+        temp, target = map(int,sys.stdin.readline().split())
+        lst = list(map(int,sys.stdin.readline().split()))
+        rank = deque(lst)
+        for j in range(temp):
+            queue.append(j)
+
+        cnt=0
+
+        while(True):
+
+            if(queue[0]==target)and(rank[0]==max(rank)):
+                cnt +=1
+                break
+
+            if rank[0] == max(rank):
+                queue.popleft()
+                rank.popleft()
+                cnt += 1
+            else:
+                queue.append(queue.popleft())
+                rank.append(rank.popleft())
+
+        result.append(cnt)
+
+    for i in result:
+        print(i)
+
+b1966()
+
