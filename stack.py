@@ -133,7 +133,6 @@ def b1874():
         lst.append(int(sys.stdin.readline()))
     tmp = sorted(lst)
     cnt = -1
-    flg = 0
     while (len(tmp)!=0):
 
         if cnt>len(tmp)-1:
