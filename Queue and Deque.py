@@ -101,5 +101,74 @@ def b1966():
     for i in result:
         print(i)
 
-b1966()
+def b10866():
+    n = int(sys.stdin.readline())
+    result=[]
+    queue = deque([])
+    for i in range(n):
+        temp = list(sys.stdin.readline().split())
+        if temp[0] == "push_back":
+            queue.append(temp[1])
+        elif temp[0] == "push_front":
+            queue.appendleft(temp[1])
+        elif temp[0]=="pop_front":
+            if len(queue) == 0:
+                result.append(-1)
+            else:
+                result.append(queue.popleft())
+        elif temp[0]=="pop_back":
+            if len(queue) == 0:
+                result.append(-1)
+            else:
+                result.append(queue.pop())
+        elif temp[0]=="size":
+            result.append(len(queue))
+        elif temp[0]=="empty":
+            if len(queue) == 0:
+                result.append(1)
+            else:
+                result.append(0)
+        elif temp[0]=="front":
+            if (len(queue) == 0):
+                result.append(-1)
+            else:
+                result.append(queue[0])
+        elif temp[0] == "back":
+            if (len(queue) == 0):
+                result.append(-1)
+            else:
+                result.append(queue[-1])
 
+    for i in range(len(result)):
+        print(result[i])
+
+
+def b1021():
+    a,b = map(int,sys.stdin.readline().split())
+    queue = deque([])
+    for i in range(1,a+1):
+        queue.append(i)
+    lst = list(map(int,sys.stdin.readline().split()))
+    count = 0
+    cnt = 0
+    flg = 0
+    while(cnt!=b):
+        if queue[0] == lst[cnt]:
+            queue.popleft()
+            cnt+=1
+            flg = 0
+
+        elif queue.index(lst[cnt])<=len(queue)//2 and flg == 0:
+            count+=1
+            queue.append(queue.popleft())
+        else:
+            flg = 1
+            count+=1
+            queue.appendleft(queue.pop())
+
+        if len(queue)==0:
+            break
+
+    print(count)
+
+b1021()
