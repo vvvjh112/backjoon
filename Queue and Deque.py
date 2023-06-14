@@ -1,5 +1,7 @@
 import sys
 from collections import deque
+
+
 def b18258():
     n = int(sys.stdin.readline())
     result=[]
@@ -156,7 +158,7 @@ def b1021():
         if queue[0] == lst[cnt]:
             queue.popleft()
             cnt+=1
-            flg = 0
+            flg = 0         # 한방향으로 갔으면 그대로 가기 위해서
 
         elif queue.index(lst[cnt])<=len(queue)//2 and flg == 0:
             count+=1
@@ -171,4 +173,44 @@ def b1021():
 
     print(count)
 
-b1021()
+
+def b5430():
+    a = int(sys.stdin.readline())
+    result=[]
+    for i in range(a):
+        command = list(sys.stdin.readline().rstrip())
+        b = int(sys.stdin.readline())
+        if b==0:
+            queue = deque([])
+            temp = sys.stdin.readline()
+        else:
+            temp = map(int, sys.stdin.readline()[1:-2].replace(",",' ').split())
+            queue=deque(list(temp))
+
+        check = 0
+        for k in range(len(command)):
+            if command[k] == "R":
+                check +=1
+
+            elif command[k] == "D" and len(queue)!=0 and queue[0]!='':
+                if check%2 == 1:
+                    queue.pop()
+                else:
+                    queue.popleft()
+            else:
+                queue = "error"
+                break
+        if check % 2 == 1 and queue != "error":
+            queue.reverse()
+        tmp = str(list(list(queue)))
+        result.append(tmp.replace(" ",""))
+
+    for i in result:
+        if i == "['e','r','r','o','r']":
+            print("error")
+        else:
+            print(i)
+
+
+
+b5430()
