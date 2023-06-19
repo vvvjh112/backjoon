@@ -84,6 +84,61 @@ def b24060():
     else:
         print(-1)
 
+def algoritm(lst,s,l):
+    tmp = l//3
+    if (tmp==0):
+        return
+    for i in range(s+tmp, s+tmp*2):
+        lst[i] = " "
+
+    algoritm(lst,s,tmp)
+    algoritm(lst,s+tmp*2,tmp)
+
+while True:
+    try:
+        a = (sys.stdin.readline().rstrip())
+        if a == '':
+            break
+        else:
+            lst = []
+            for i in range(pow(3, int(a))):
+                lst.append("-")
+            algoritm(lst, 0, len(lst))
+            ans = ''
+            for i in lst:
+                ans += i
+            print(ans)
+
+    except EOFError:
+        break
+        
+        
+def recursive(array, start, now_length):
+    temp = now_length // 3
+
+    if temp == 0:
+        return
+
+    for i in range(start + temp, start + temp * 2):
+        array[i] = ' '
+
+    recursive(array, start, temp)
+    recursive(array, start + temp * 2, temp)
 
 def b4779():
-    pass
+    while True:
+        try:
+            n = input()
+            if n == '':
+                break
+            else:
+                n = int(n)
+                array = ['-' for i in range(pow(3, n))]
+                recursive(array, 0, pow(3, n))
+                answer = ''
+                for i in array:
+                    answer += i
+                print(answer)
+
+        except EOFError:
+            break
