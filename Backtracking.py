@@ -74,4 +74,33 @@ def b15652():
                 lst.pop()
     dfs(1)
 
-b15652()
+def b14888():
+    depth = int(sys.stdin.readline())
+    lst = list(map(int,sys.stdin.readline().split()))
+    operator = list(map(int,(sys.stdin.readline().split())))
+    temp=[]
+    def dfs(dp, num, plus, minus, multi, divide):
+
+        if dp == depth:
+            if len(temp)==0:
+                temp.append(max(-1000000000, num))
+                temp.append(min(1000000000, num))
+            else:
+                temp[0] = max(temp[0],num)
+                temp[1] = min(temp[1],num)
+            return
+
+        if plus:
+            dfs(dp+1, num+lst[dp], plus-1,minus,multi,divide)
+        if minus:
+            dfs(dp+1, num-lst[dp], plus,minus-1,multi,divide)
+        if multi:
+            dfs(dp+1, num*lst[dp], plus,minus,multi-1,divide)
+        if divide:
+            dfs(dp+1, int(num/lst[depth]), plus,minus,multi,divide-1)
+
+    dfs(1,lst[0],operator[0],operator[1],operator[2],operator[3])
+    print(temp[0])
+    print(temp[1])
+
+b14888()
