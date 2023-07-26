@@ -103,4 +103,32 @@ def b14888():
     print(temp[0])
     print(temp[1])
 
-b14888()
+def b14889():
+    lst=[]
+    n = int(sys.stdin.readline())
+    for i in range(n):
+        lst.append(list(map(int,sys.stdin.readline().split())))
+    visit = [False for _ in range(n)]
+    mini = 999999999999
+
+    def dfs(depth, set):
+        global mini
+        if depth == n//2:
+            a=0
+            b=0
+            for i in range(n):
+                for j in range(n):
+                    if visit[i] and visit[j]:
+                        a += lst[i][j]
+                    elif not visit[i] and not visit[j]:
+                        b += lst[i][j]
+            mini = min(mini, abs(a-b))
+            return
+
+        for i in range(set, n):
+            if not visit[i]:
+                visit[i] = True
+                dfs(depth+1,i+1)
+                visit[i]= False
+    dfs(0,0)
+b14889()
