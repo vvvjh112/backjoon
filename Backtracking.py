@@ -97,7 +97,7 @@ def b14888():
         if multi:
             dfs(dp+1, num*lst[dp], plus,minus,multi-1,divide)
         if divide:
-            dfs(dp+1, int(num/lst[depth]), plus,minus,multi,divide-1)
+            dfs(dp+1, int(num/lst[dp]), plus,minus,multi,divide-1)
 
     dfs(1,lst[0],operator[0],operator[1],operator[2],operator[3])
     print(temp[0])
